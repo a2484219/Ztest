@@ -1,5 +1,6 @@
 package com.test;  
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import com.yaocongfei.service.UserService;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:spring-test.xml"})
+@ContextConfiguration(locations = {"classpath:spring-test.xml"})
 public class JunitTest {
 
 	@Autowired
@@ -28,6 +29,7 @@ public class JunitTest {
 	private UserService userService;
 	
 	@Test
+	@Ignore
 	public void test(){
 		User user = new User();
 		user.setUsername("jack");
@@ -38,7 +40,18 @@ public class JunitTest {
 	}
 	
 	@Test
+	@Ignore
 	public void tests(){
+		User user = new User();
+		user.setUsername("jack");
+		user.setPassword("111111");
+		User uu = userService.getUser(user);
+		System.out.println(uu.getUsername());
+		System.out.println(uu.getPassword());
+	}
+	
+	@Test
+	public void testAop(){
 		User user = new User();
 		user.setUsername("jack");
 		user.setPassword("111111");

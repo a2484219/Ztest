@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User getUser(User user) {
+		System.out.println("=======getUser方法内部========");
 		return userDao.getUser(user);
 	}
 
