@@ -46,9 +46,9 @@
 	  </dependency>
 	  <!-- mybatis/spring包 -->
 	  <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <version>4.0.4.RELEASE</version>
+      		<groupId>org.springframework</groupId>
+      		<artifactId>spring-jdbc</artifactId>
+      		<version>4.0.4.RELEASE</version>
 	  </dependency>
 	  <dependency>
 			<groupId>org.mybatis</groupId>
@@ -72,7 +72,7 @@
             <groupId>org.springframework</groupId>  
             <artifactId>spring-test</artifactId>  
             <version>${spring.version}</version>  
-        </dependency> 
+      </dependency> 
 	  <!-- 对模型视图添加前后缀  对应springmvc配置文件需要的jar包-->
 	  <dependency>  
             <groupId>javax.servlet</groupId>  
@@ -80,8 +80,9 @@
             <version>1.2</version>
 	  </dependency>
 	  <!-- 日志文件管理包 -->
-	<!-- log start -->
-	  <dependency>
+	  <!-- 如果选用log4j就这样配置 -->
+	  <!-- log4j start -->
+	  <!-- <dependency>
 		<groupId>log4j</groupId>
 		<artifactId>log4j</artifactId>
 		<version>${log4j.version}</version>
@@ -95,8 +96,17 @@
 		<groupId>org.slf4j</groupId>
 		<artifactId>slf4j-log4j12</artifactId>
 		<version>${slf4j.version}</version>
-	  </dependency>
-	  <!-- log end -->
+	  </dependency> -->
+	  <!-- log4j end -->
+	  <!-- 如果使用logback就这样配置 -->
+	  <!-- logback start -->
+	  <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.1.2</version>
+      </dependency>
+	  <!-- logback end -->
+	  <!-- 连接池配置 -->
 	  <dependency>
 			<groupId>c3p0</groupId>
 			<artifactId>c3p0</artifactId>
@@ -107,7 +117,7 @@
 			<groupId>spy</groupId>
 			<artifactId>spymemcached</artifactId>
 			<version>2.7.3</version>
-		</dependency>
+	  </dependency>
   </dependencies>
   <build>
 		<finalName>springmvc</finalName>
