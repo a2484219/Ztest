@@ -16,6 +16,7 @@ public class TestNotifier implements ApplicationListener {
 
 	@Override
 	public void onApplicationEvent(ApplicationEvent event) {
+		//这里会打印3次，一次是在spring容器初始化的时候打印，另外就是监听到自己的事件一次，还有一次是spring容器销毁
 		System.out.println("Event对象：" + event);
 		if(event instanceof TestEvent){
 			System.out.println(((TestEvent) event).getAddress());
