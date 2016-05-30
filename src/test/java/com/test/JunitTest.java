@@ -4,12 +4,15 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yaocongfei.dao.UserDao;
+import com.yaocongfei.event.TestEvent;
 import com.yaocongfei.pojo.User;
 import com.yaocongfei.service.UserService;
+import com.yaocongfei.util.ApplicationUtils;
 
 /**
  *
@@ -51,6 +54,7 @@ public class JunitTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testAop(){
 		User user = new User();
 		user.setUsername("jack");
@@ -58,6 +62,15 @@ public class JunitTest {
 		User uu = userService.getUser(user);
 		System.out.println(uu.getUsername());
 		System.out.println(uu.getPassword());
+	}
+	
+	@Test
+	public void testApplicationListener(){
+		
+		ApplicationContext act = ApplicationUtils.getApplicationContext();
+		System.out.println("ApplicationContext∂‘œÛ£∫" + act);
+		act.publishEvent(new TestEvent("test"));
+		
 	}
 }
  
