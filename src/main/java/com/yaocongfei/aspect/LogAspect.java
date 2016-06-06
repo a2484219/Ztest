@@ -1,6 +1,8 @@
 package com.yaocongfei.aspect;  
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -10,6 +12,8 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import com.yaocongfei.pojo.User;
 
 import ch.qos.logback.classic.Logger;
 
@@ -27,26 +31,42 @@ public class LogAspect {
 
 	private static final Logger logger = (Logger) LoggerFactory.getLogger(LogAspect.class);
 	
-	@Pointcut("execution(* com.yaocongfei.service.*.*(..))")
+	@Pointcut("execution(* com.yaocongfei.service.*.*(..)) and args(..)")
     public void pointCutMethod() {  
     } 
 	
 	@After("pointCutMethod()")
 	public void doAfter(){
-		logger.info("=====after=======");
-		System.out.println("=========AOP方法后执行=========");
+		logger.info("=====AOP after=======");
 	}
 	
 	@Before("pointCutMethod()")
-	public void doBefore(){
-		logger.info("=====before======");
-		System.out.println("=========AOP方法前执行=========");
+	public void doBefore(JoinPoint jp){
+		logger.info("=====AOP before======");
+		Object[] args = jp.getArgs();
+		System.out.println(args[0]);
+		System.out.println(((User)args[0]).getUsername());
+		System.out.println(((User)args[0]).getPassword());
+		Signature signature = jp.getSignature();
+		System.out.println(signature.toString());
+		System.out.println(signature.toLongString());
+		//打印结果：getUser
+		System.out.println(signature.getName());
+		//打印结果：接口名com.yaocongfei.service.UserService
+		System.out.println(signature.getDeclaringTypeName());
+		//打印结果：interface com.yaocongfei.service.UserService
+		System.out.println(signature.getDeclaringType());
 	}
 	
-	@Around("pointCutMethod()")  
+//	@Around("pointCutMethod()")  
     public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
         System.out.println("进入方法---环绕通知");
+        //表示让结束环绕前的一个通知信号，并且获取返回值
         Object o = pjp.proceed();
+        User user = (User)o;
+        user.setPassword("123456");
+        //打印结果：com.yaocongfei.service.impl.UserServiceImpl@e9ccd5c
+        System.out.println(pjp.getTarget());
         System.out.println("退出方法---环绕通知");
         return o;
     }  

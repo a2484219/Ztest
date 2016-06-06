@@ -28,8 +28,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User getUser(User user) {
-		log.error("getUser方法内部");log.debug("222");log.info("333");
-		System.out.println("=======getUser方法内部========");
+		log.info("getUser方法内部");
 		return userDao.getUser(user);
 	}
 

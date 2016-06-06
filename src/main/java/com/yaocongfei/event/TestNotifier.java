@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * 鍔熻兘锛?
- * 浣滆?锛歭scm
- * 鏃ユ湡锛?016-5-30涓嬪崍6:33:26
+ * 功能：
+ * 作者：lscm
+ * 日期：2016-5-30下午6:28:30
  *
  */
 @Component

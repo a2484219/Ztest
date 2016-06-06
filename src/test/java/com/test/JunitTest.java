@@ -54,7 +54,7 @@ public class JunitTest {
 	}
 	
 	@Test
-	@Ignore
+//	@Ignore
 	public void testAop(){
 		User user = new User();
 		user.setUsername("jack");
@@ -65,6 +65,7 @@ public class JunitTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testApplicationListener(){
 		
 		ApplicationContext act = ApplicationUtils.getApplicationContext();
