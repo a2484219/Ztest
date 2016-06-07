@@ -10,13 +10,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>首页信息</title>
-    
+    <style>
+ 		.hrstyle{
+  			width:400px;
+  			align:left;
+  			border:10;
+  			color:red;
+  			hight:2px;
+ 		}
+	</style>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3"> 
 	<meta http-equiv="description" content="This is my page">
-	
+	<!-- 直接引用bootstrap的样式 -->
+	<link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
 	<script type="text/javascript" src="<%= basePath%>js/angular.min.js"></script>
 	<script type="text/javascript">
 		var app = angular.module('myApp', []);
@@ -32,6 +41,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				/* alert(response);
 				alert("22222");
 				window.location="test/index.htm"; */
+				//重新加载网页
+				//window.location.reload();
 			})
 			.error(function(response, status, headers, config){
 				//do  anything what you want;
@@ -44,8 +55,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</script>
   </head>
   <!-- ng-init优先于script中的$scope.username -->
-  <body ng-init="username='John';age=10;cost=20;person={name:'John',psd:'123'};points=[1,2,3,3,5]" ng-app="myApp" ng-controller="myCtrl">
-    <input type="text" ng-model='username'></br>
+  <body ng-init="username='John';age=10;cost=20;person={name:'John',psd:'123'};points=[1,2,3,3,5]" ng-app="myApp" ng-controller="myCtrl" style="margin-left:100px" bgcolor="red">
+  <br>
+  <label>用户信息</label>
+  <hr class="hrstyle" align="left">
+    <label class="control-label">用户名：</label><input type="text" ng-model='username' class="form-control" placeholder="用户名" style="width:320px"></br>
+    <label class="control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label><input type="password" ng-model='password' class="form-control" placeholder="密码" style="width:320px"></br>
+	
+	<hr class="hrstyle" align="left">
 	username:{{username}}</br>
 	算法：{{99 + 1}}</br>
 	值：{{age * cost}}</br>
@@ -85,5 +102,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <input type="email" name="myAddress" ng-model="text">
     <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
 </form>
+<select ng-model="selectedName" ng-options="x for x in names">
+</select>
+
+<button class="btn btn-success" ng-click="count = count + 1">点我！</button>
+
+<p>{{ count }}</p>
+<hr class="hrstyle" align="left">
+<button class="btn btn-success" ng-click="editUser('new')">
+<span class="glyphicon glyphicon-user,glyphicon glyphicon-pencil"></span>创建新用户
+</button><hr class="hrstyle" align="left">
+<table class="table table-striped">
+	<tr>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<button class="btn btn-primary" ng-click="editUser('new')">
+<span class="glyphicon glyphicon-save">nihao</span>
+</button>
   </body>
 </html>
