@@ -84,6 +84,7 @@ public class LogAspect {
         System.out.println("ÀıÍâÍ¨Öª");
         System.out.println(e.getMessage());
         System.out.println(e.getMessage());
+        System.out.println(e.getMessage());
     }  
 }
  
