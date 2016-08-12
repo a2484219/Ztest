@@ -83,6 +83,7 @@ public class LogAspect {
     public void doAfterThrowing(Exception e) {
         System.out.println("ÀıÍâÍ¨Öª");
         System.out.println(e.getMessage());
+        System.out.println(e.getMessage());
     }  
 }
  
