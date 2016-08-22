@@ -120,6 +120,6 @@
 	  </dependency>
   </dependencies>
   <build>
-		<finalName>springmvc</finalName>
+		<finalName>springmvc</finalName>  
   </build>
 </project>
